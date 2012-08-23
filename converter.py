@@ -16,7 +16,10 @@ from Queue import Queue, Empty as QueueEmpty
 
 def convert_to_unicode(text):
         #result = replace("ff;", u"තෛ").replace("ffk", u"නෛ").replace("ffu",u" ම").replace("u",u"ම",
+        text = re.sub(r'\[\\(\S+)\/\]', ' ', text)
         text = text.replace(u"￦",",")
+        text = text.replace(u"&sect;", u"§")
+        text = text.replace(u"&curren;", u"¤")
         text = text.replace(u"�", ".")
         text = text.replace(u"￫", "(")
         text = text.replace(u"￩", ")")
@@ -93,7 +96,7 @@ def convert_to_unicode(text):
         text = text.replace("fjHd",u"ව්‍යො") 
         text = text.replace("f;Hd",u"ත්‍යො") 
         text = text.replace("fNHd",u"භ්‍යො")
-        text = text.replace("u!",u"රම")
+        text = text.replace("u!",u"ර්‍ම")
         
         text = text.replace( "N@",u"භූ") 
         text = text.replace("fOHd",u"ධ්‍යො") 
@@ -168,6 +171,7 @@ def convert_to_unicode(text):
         text = text.replace( "fm1",u"ප්‍රෙ")
         text = text.replace( u"fÊ",u"ද්‍රෙ")
         text = text.replace( "fi1",u"ස්‍රෙ")
+        text = text.replace("f;1",u"ත්‍රෛෙ") 
         text = text.replace("f;1",u"ත්‍රෙ") 
         text = text.replace( "fN1",u"භ්‍රෙ")
         text = text.replace("fO1",u"ධ්‍රෙ") 
@@ -193,6 +197,9 @@ def convert_to_unicode(text):
         text = text.replace("fg#",u"ටෞ") 
         text = text.replace( "f;#",u"තෞ")
         text = text.replace("fN#",u"භෞ") 
+
+        text = text.replace("Z[",u"ඤ") 
+
         text = text.replace("f[#",u"ඤෞ") 
         text = text.replace("fIda",u"ෂෝ") 
         text = text.replace("fUda",u"ඹෝ") 
@@ -319,6 +326,7 @@ def convert_to_unicode(text):
         text = text.replace("f>",u"ඝෙ") 
         text = text.replace("fL",u"ඛෙ") 
         text = text.replace("f<",u"ළෙ") 
+        text = text.replace( "ZZo",u"ඳ")
         text = text.replace( "Zo",u"ඳ")
         text = text.replace("fZ.",u"ඟෙ") 
         text = text.replace( "fK",u"ණෙ")
@@ -382,6 +390,7 @@ def convert_to_unicode(text):
         text = text.replace("Ls",u"ඛි") 
         text = text.replace(",q",u"ලු") 
         text = text.replace("LS",u"ඛී") 
+        text = text.replace("CLK",u"ක්ඛණ") 
         text = text.replace( "os",u"දි")
         text = text.replace("pz",u"ච්") 
         text = text.replace("ca",u"ජ්") 
@@ -414,6 +423,7 @@ def convert_to_unicode(text):
         text = text.replace("nz",u"බ්") 
         text = text.replace("nS",u"බී") 
         text = text.replace("uz",u"ම්") 
+        text = text.replace("J",u"න්") 
         text = text.replace("cs",u"ජි") 
         text = text.replace("us",u"මි") 
         text = text.replace("Uz",u"ඹ්") 
@@ -424,7 +434,8 @@ def convert_to_unicode(text):
         text = text.replace(u"Ì",u"ඳු") 
         text = text.replace(u"Ê",u"ද්‍ර") 
         text = text.replace("jS",u"වී") 
-        text = text.replace("js",u"වි") 
+        text = text.replace("j!",u"ර්ව") 
+
         text = text.replace("Xz",u"ඞ්") 
         text = text.replace( "X",u"ඞී")
         text = text.replace("Ps",u"ඡි") 
@@ -437,6 +448,9 @@ def convert_to_unicode(text):
         text = text.replace("Ps",u"ඡි") 
         text = text.replace("vs",u"ඩි") 
         text = text.replace( u"ZCÌ",u"ඤු")
+        text = text.replace("CI",u"ක්‍ෂ")
+        text = text.replace("Z.s",u"ඟි")
+        text = text.replace( u"ZCo",u"ඤ්‍")
         text = text.replace(".",u"ග") 
         text = text.replace("ZM",u"ළු") 
         text = text.replace("I",u"ෂ") 
@@ -447,7 +461,7 @@ def convert_to_unicode(text):
         text = text.replace( "V",u"ඪ")
         text = text.replace( ">",u"ඝ")
         text = text.replace("B",u"ඊ") 
-
+        text = text.replace("F",u"ත්") 
         text = text.replace("L",u"ඛ") 
         text = text.replace("<",u"ළ") 
         text = text.replace("Z.",u"ඟ") 
@@ -479,6 +493,9 @@ def convert_to_unicode(text):
         text = text.replace("I",u"ෂ")      
         text = text.replace("ks", u"නි")  
         text = text.replace("ka",u"න්") 
+
+        text = text.replace("\' k",u"\"න")  #if has blank '  and yi then " yi
+
         text = text.replace("k",u"න‍") 
         text = text.replace( "K",u"ණ")
         text = text.replace("L",u"ඛ") 
@@ -496,6 +513,11 @@ def convert_to_unicode(text):
         text = text.replace( "b",u"ඉ")
         text = text.replace("c",u"ජ") 
         text = text.replace("g",u"ට") 
+
+        text = text.replace("\' h",u"\" ය")  #if has blank '  and yi then " yi
+        text = text.replace("\'h",u"\"ය")  #if has blank '  and yi then " yi
+
+
         text = text.replace("h",u"ය") 
         text = text.replace("i",u"ස") 
         text = text.replace("j",u"ව") 
@@ -513,6 +535,7 @@ def convert_to_unicode(text):
         text = text.replace("y",u"හ") 
         text = text.replace("{",u"ඥ") 
         text = text.replace(u"Ë",u"ඳ") 
+           
         text = text.replace("CI",u"ක්‍ෂ") 
         text = text.replace("e",u"ැ") 
         text = text.replace("E",u"ෑ") 
@@ -526,8 +549,13 @@ def convert_to_unicode(text):
         text = text.replace("#",u"ෟ") 
         text = text.replace("d",u"ා") 
         text = text.replace( "a",u"්")
-        text = text.replace( "\"","\"")
-        text = text.replace("\'",u"\'") 
+
+        text = text.replace("\"","\"")
+
+        text = text.replace(" \'",u" \"")  #if has blank '  then "
+        
+        text = text.replace("\'",u".")  #otherwise .
+
         text = text.replace("*",u"(") 
         text = text.replace( "(",u"(")
         text = text.replace( "]",u"ￕ")
@@ -541,16 +569,31 @@ def convert_to_unicode(text):
         text = text.replace("_",u"ￌ") 
         text = text.replace("^",u"ￋ") 
         text = text.replace(u"Õ",u"ﾶ") 
+        text = text.replace(u"ä",u"*") 
+
         text = text.replace("=",u"0") 
-        text = text.replace("-",u"9") 
-        text = text.replace(u"0",u"8") 
-        text = text.replace("9",u"7") 
-        text = text.replace( "8",u"6")
-        text = text.replace("7",u"5") 
-        text = text.replace("6",u"4") 
-        text = text.replace("5",u"3") 
+       
+
         text = text.replace("4",u"2") 
-        text = text.replace("3",u"1") 
+        text = text.replace("6",u"4") 
+        text = text.replace( "8",u"6")
+        text = text.replace(u"0",u"8") 
+        text = text.replace("3",u"1")  
+        text = text.replace("5",u"3")   
+        text = text.replace("7",u"5") 
+        text = text.replace("9",u"7") 
+        text = text.replace("-",u"9") 
+
+        text = text.replace("1'",u"1.") 
+        text = text.replace("2'",u"2.") 
+        text = text.replace( "8'",u"8.")
+        text = text.replace(u"0'",u"0.")    
+        text = text.replace("4'",u"4.") 
+        text = text.replace("6'",u"6.") 
+        text = text.replace("3'",u"3.") 
+        text = text.replace("5'",u"5.") 
+        text = text.replace("7'",u"7.") 
+        text = text.replace("9'",u"9.") 
         return text
 
 
